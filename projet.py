@@ -9,7 +9,7 @@ from openpyxl.utils import get_column_letter
 def supprimer_sous_lim(data : pd.DataFrame, limite : float, liste_colonnes : list ):
     index = 0
     brake = False
-    while data.iloc[index+1,0] != None:
+    while index<data.shape[0]:
         for colonnes in range (data.shape[1]):
             for elem in liste_colonnes:
                 if data.columns.values[colonnes] == elem:
