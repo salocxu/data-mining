@@ -6,24 +6,19 @@ from openpyxl.utils import get_column_letter
 #jfdjd
 
 # faure en sorte de choper directmeent les colonnes qui nous interessent ou prendre sa position 
-def supprimer_sous_lim(data : pd.DataFrame, limite : float, liste_colonnes : list ):
+def supprimer_sous_lim(data: pd.DataFrame, limite: float, liste_colonnes: list):
     index = 0
-    brake = False
-    while data.iloc[index+1,0] != None:
-        for colonnes in range (data.shape[1]):
+    while index < data.shape[0]:
+        for colonnes in range(data.shape[1]):
             for elem in liste_colonnes:
                 if data.columns.values[colonnes] == elem:
                     if data.iloc[index, colonnes] <= limite:
                         print(index, colonnes)
                         data = data.drop(axis=0, index=index)
-                        brake = True
+                        # Après la suppression, réinitialisez les indices pour éviter les erreurs
+                        data = data.reset_index(drop=True)
                         break
-                        # eviter de suprimer liste non existente
-            if brake == True:
-                brake = False
-                break    
-            
-        index += 1    
+        index += 1
 
     return data
 
@@ -42,7 +37,7 @@ valeur0inutile = ['RS_E_InAirTemp_PC1','RS_E_InAirTemp_PC2', 'RS_E_OilPress_PC1'
 
 if copier == 'oui':
     data = pd.read_csv('../ar41_for_ulb.csv', sep=';', nrows=n)
-    data = supprimer_sous_lim(data, 0, valeur0inutile )
+    data = supprimer_sous_lim(data, 0.0, valeur0inutile )
     workbook = Workbook()
     sheet = workbook.active
 
