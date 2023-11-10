@@ -40,7 +40,7 @@ valeur0inutile = ['RS_E_InAirTemp_PC1','RS_E_InAirTemp_PC2', 'RS_E_OilPress_PC1'
 
 
 if copier == 'oui':
-    data = pd.read_csv('ar41_for_ulb.csv', sep=';', nrows=n)
+    data = pd.read_csv('../ar41_for_ulb.csv', sep=';', nrows=n)
     data = supprimer_sous_lim(data, 0, valeur0inutile )
     workbook = Workbook()
     sheet = workbook.active
