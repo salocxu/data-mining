@@ -9,20 +9,25 @@ from openpyxl.utils import get_column_letter
 def supprimer_sous_lim(data : pd.DataFrame, limite : float, liste_colonnes : list ):
     index = 0
     brake = False
-    while data.iloc[index+1,0] != None:
-        for colonnes in range (data.shape[1]):
-            for elem in liste_colonnes:
-                if data.columns.values[colonnes] == elem:
-                    if data.iloc[index, colonnes] <= limite:
-                        print(index, colonnes)
-                        data = data.drop(axis=0, index=index)
-                        brake = True
-                        break
-                        # eviter de suprimer liste non existente
-            if brake == True:
+    total_lines = data.shape[0]
+    while index < total_lines:
+        # brake courcircuit les deux boucles si deja supprime une fois
+        for colonnes in range (data.shape[1]) :
+            if brake:
                 brake = False
-                break    
-            
+                break
+            for elem in liste_colonnes:
+                if brake:
+                    # pas changer valeur car doit break deux boucles
+                    break
+                # nom de la colonne
+                if data.columns.values[colonnes] == elem:
+                    # comparaison avec la limite 
+                    if data.iloc[index, colonnes] <= limite:
+                        print(index, data.columns.values[colonnes])
+                        data = data.drop(axis=0, index=index)
+                        total_lines -= 1
+                        brake = True 
         index += 1    
 
     return data
