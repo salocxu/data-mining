@@ -1,8 +1,8 @@
 import pandas as pd
 
 # Charger les fichiers Excel dans des DataFrames
-df1 = pd.read_excel('C:/Users/noahl/OneDrive/Documents/ULB/INFO-H423-DataMining/data-mining/data_tab.xlsx')
-df2 = pd.read_excel('C:/Users/noahl/OneDrive/Documents/ULB/INFO-H423-DataMining/data-mining/Donnees_meteo_dayavg.xlsx')
+df1 = pd.read_excel('data_tab.xlsx')
+df2 = pd.read_excel('Donnees_meteo_dayavg.xlsx')
 
 # Convertir la colonne 'timestamps_UTC' de df1 en format datetime
 df1['timestamps_UTC'] = pd.to_datetime(df1['timestamps_UTC'])
