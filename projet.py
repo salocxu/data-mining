@@ -33,6 +33,9 @@ def supprimer_sous_lim(data : pd.DataFrame, limite : float, liste_colonnes : lis
     return data
 
 
+def trouver_alt(lat, lon):
+    
+    return alt
 
 copier = 'oui'
 
