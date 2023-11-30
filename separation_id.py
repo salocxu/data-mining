@@ -9,5 +9,5 @@ grouped_data = all_data.groupby('mapped_veh_id')
 
 #Enregistrer les données de chaque train dans un fichier CSV séparé
 for train_id, train_data in grouped_data:
-    train_filename = f'train{train_id}.csv'
+    train_filename = f'trains/train{train_id}.csv'
     train_data.to_csv(train_filename, index=False, sep=',')

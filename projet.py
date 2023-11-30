@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
+
 #jfdjd
 
 # faure en sorte de choper directmeent les colonnes qui nous interessent ou prendre sa position 
