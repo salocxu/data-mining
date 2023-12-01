@@ -50,7 +50,7 @@ valeur0inutile = ['RS_E_InAirTemp_PC1','RS_E_InAirTemp_PC2', 'RS_E_OilPress_PC1'
 
 
 if copier == 'oui':
-    data = pd.read_csv('../ar41_for_ulb.csv', sep=';', nrows=n)
+    data = pd.read_csv('../ar41_for_ulb.csv', sep=';')
     data = supprimer_sous_lim(data, 0, valeur0inutile )
     data[['date', 'hour']] = data['timestamps_UTC'].str.split(expand=True) 
     workbook = Workbook()
