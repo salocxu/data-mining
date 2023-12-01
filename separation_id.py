@@ -39,6 +39,7 @@ def add_maintenance(data: pd.DataFrame):
 
     return data
 
+
 #Charger le fichier CSV contenant toutes les données
 file_path = 'data_tab.xlsx'
 
