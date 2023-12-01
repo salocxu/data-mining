@@ -1,0 +1,2 @@
+data_tab.xlsx filter=lfs diff=lfs merge=lfs -text
+resultat_avec_colonnes.csv filter=lfs diff=lfs merge=lfs -text
