@@ -31,10 +31,10 @@ new_dfa['labels_kmeans']=labels
 #visualiser les cluster en 2dimesions
 fig,ax=plt.subplots(figsize=[10,7])
 plt.scatter(new_dfa['lat'][new_dfa['labels_kmeans']==0],new_dfa['lon'][new_dfa['labels_kmeans']==0],
-            color='blue',s=100,linestyle='--')
+            color='blue',s=20,linestyle='--')
 plt.scatter(new_dfa['lat'][new_dfa['labels_kmeans']==1],new_dfa['lon'][new_dfa['labels_kmeans']==1],
-            color='red',s=100,linestyle='--')
+            color='red',s=20,linestyle='--')
 plt.scatter(new_dfa['lat'][new_dfa['labels_kmeans']==2],new_dfa['lon'][new_dfa['labels_kmeans']==2],
-            color='green',s=100,linestyle='--')
+            color='green',s=20,linestyle='--')
 
 plt.show()
