@@ -41,7 +41,7 @@ def trouver_alt(lat, lon):
 copier = 'oui'
 
 # On parcourt les lignes du CSV
-n= 1000000
+n= 10000
 # pas besoin de toujours le faire
     
 
@@ -50,7 +50,7 @@ valeur0inutile = ['RS_E_InAirTemp_PC1','RS_E_InAirTemp_PC2', 'RS_E_OilPress_PC1'
 
 
 if copier == 'oui':
-    data = pd.read_csv('../ar41_for_ulb.csv', sep=';', nrows=n)
+    data = pd.read_csv('../ar41_for_ulb.csv', sep=';')
     data = supprimer_sous_lim(data, 0, valeur0inutile )
     data[['date', 'hour']] = data['timestamps_UTC'].str.split(expand=True) 
     workbook = Workbook()
@@ -70,7 +70,7 @@ if copier == 'oui':
     workbook.close()
 #travailler à partir du excel
 
- 
+
 data = pd.read_excel('data_tab.xlsx')
 # je souhaite que tu me fasses une moyenne des donnees sur les colonnes 3 à fin
 
