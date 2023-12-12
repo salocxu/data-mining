@@ -42,11 +42,7 @@ def trouver_alt(lat, lon):
 copier = 'oui'
 
 # On parcourt les lignes du CSV
-<<<<<<< HEAD
-n= 10000
-=======
 n= 50000
->>>>>>> pute
 # pas besoin de toujours le faire
     
 
@@ -75,13 +71,8 @@ if copier == 'oui':
     workbook.close()
 #travailler à partir du excel
 
-<<<<<<< HEAD
-
-data = pd.read_excel('data_tab.xlsx')
-=======
  
 data = pd.read_excel('data_tabmoins.xlsx')
->>>>>>> pute
 # je souhaite que tu me fasses une moyenne des donnees sur les colonnes 3 à fin
 
 avg = data.iloc[:, 5:].mean(axis=0)
