@@ -41,12 +41,12 @@ def add_maintenance(data: pd.DataFrame):
 
 
 #Charger le fichier CSV contenant toutes les données
-file_path = 'data_tab.xlsx'
+file_path = 'data_tabmoins.xlsx'
 
 result_interm = prepare_logistic_reg(file_path, 65, 115, 100)
 result = add_maintenance(result_interm)
 
-result.to_csv('resultat_avec_colonnes.csv', index=False, sep=',')
+result.to_csv('resultat_avec_colonnes2.csv', index=False, sep=',')
 
 #Grouper les données par identifiant de train (mapped_veh_id)
 grouped_data = result.groupby('mapped_veh_id')
