@@ -8,29 +8,11 @@ from openpyxl.utils import get_column_letter
 
 # faure en sorte de choper directmeent les colonnes qui nous interessent ou prendre sa position 
 def supprimer_sous_lim(data : pd.DataFrame, limite : float, liste_colonnes : list ):
-    index = 0
-    brake = False
-    total_lines = data.shape[0]
-    while index < total_lines:
-        # brake courcircuit les deux boucles si deja supprime une fois
-        for colonnes in range (data.shape[1]) :
-            if brake:
-                brake = False
-                break
-            for elem in liste_colonnes:
-                if brake:
-                    # pas changer valeur car doit break deux boucles
-                    break
-                # nom de la colonne
-                if data.columns.values[colonnes] == elem:
-                    # comparaison avec la limite 
-                    if data.iloc[index, colonnes] <= limite:
-                        print(index, data.columns.values[colonnes])
-                        data = data.drop(axis=0, index=index)
-                        total_lines -= 1
-                        brake = True 
-        index += 1    
-
+    asuppr = (data[liste_colonnes] <= limite).any(axis=1)
+    data = (data[~asuppr])
+    print(data.isna().sum())
+    data = data.dropna()
+    print(data.isna().sum())
     return data
 
 '''
@@ -51,27 +33,15 @@ valeur0inutile = ['RS_E_InAirTemp_PC1','RS_E_InAirTemp_PC2', 'RS_E_OilPress_PC1'
 
 
 if copier == 'oui':
-    data = pd.read_csv('../ar41_for_ulb.csv', sep=';')
+    data = pd.read_csv('../ar41_for_ulb.csv', sep=';',nrows=n)
     data = supprimer_sous_lim(data, 0, valeur0inutile )
+    
     data[['date', 'hour']] = data['timestamps_UTC'].str.split(expand=True) 
-    workbook = Workbook()
-    sheet = workbook.active
-    print(data.shape[1])
+    data.to_excel('data_tabmoins.xlsx', index=False)
 
-
-    for index in range (len(data.columns)-1):
-        sheet.cell(row=1, column=index + 1, value= data.columns[index+1])
-    for lignes in range (data.shape[0]):
-        for colonnes in range (len(data.columns)-1):
-            # type dataframe en a besoin pour les index
-            #regarder si deux oil temp
-            sheet.cell(row=lignes + 2, column=colonnes + 1, value=data.iloc[lignes ,colonnes+1])
-
-    workbook.save('data_tabmoins.xlsx')
-    workbook.close()
 #travailler à partir du excel
 
- 
+''' 
 data = pd.read_excel('data_tabmoins.xlsx')
 # je souhaite que tu me fasses une moyenne des donnees sur les colonnes 3 à fin
 
@@ -89,3 +59,4 @@ for index in range (len(avg)):
 
 workbook.save('data_avgmoins.xlsx')
 workbook.close()
+'''
