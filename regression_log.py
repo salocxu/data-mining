@@ -27,7 +27,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_
 model = LogisticRegression()
 
 #print(f'{X_train} \n')
-print(y_train)
+
 
 # Train the model
 model.fit(X_train, y_train)
