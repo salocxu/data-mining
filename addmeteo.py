@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Charger les fichiers Excel dans des DataFrames
-df1 = pd.read_excel('data_tab.xlsx')
+df1 = pd.read_csv('resultat_avec_colonnes2.csv')
 df2 = pd.read_excel('Donnees_meteo_dayavg.xlsx')
 
 # Convertir la colonne 'timestamps_UTC' de df1 en format datetime
@@ -21,7 +21,7 @@ df_merged.drop('DATE', axis=1, inplace=True)
 import pandas as pd
 
 # Charger les fichiers Excel dans des DataFrames
-df1 = pd.read_excel('data_tab.xlsx')
+df1 = pd.read_csv('resultat_avec_colonnes2.csv')
 df2 = pd.read_excel('Donnees_meteo_dayavg.xlsx')
 
 # Convertir la colonne 'timestamps_UTC' de df1 en format datetime
@@ -38,4 +38,4 @@ df_merged = pd.merge(df1, df2, left_on='date', right_on='DATE', how='inner')
 df_merged.drop('DATE', axis=1, inplace=True)
 
 # Enregistrer le DataFrame résultant dans un nouveau fichier Excel
-df_merged.to_excel('resultat_jointure.xlsx', index=False)
+df_merged.to_excel('resultat_jointure2.xlsx', index=False)

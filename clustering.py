@@ -9,7 +9,7 @@ from sklearn.cluster  import KMeans
 from sklearn.preprocessing import StandardScaler
 
 df=pd.read_excel('resultat_jointure.xlsx')
-dfa=df[['lat',"lon"]]
+dfa=df[['lat',"lon","maintenance"]]
 
 
 #standardiser les données
@@ -17,7 +17,7 @@ scdfa=StandardScaler()
 dfa_std=scdfa.fit_transform(dfa.astype(float))
 
 #On part sur 3 clusters
-kmeans=KMeans(n_clusters=3).fit(dfa_std)
+kmeans=KMeans(n_clusters=3,n_init=10).fit(dfa_std)
 
 #affecter les cluster à la varialb e labels
 labels=kmeans.labels_
@@ -31,10 +31,10 @@ new_dfa['labels_kmeans']=labels
 #visualiser les cluster en 2dimesions
 fig,ax=plt.subplots(figsize=[10,7])
 plt.scatter(new_dfa['lat'][new_dfa['labels_kmeans']==0],new_dfa['lon'][new_dfa['labels_kmeans']==0],
-            color='blue',s=20,linestyle='--')
+            color='blue',s=20,linestyle='--' if new_dfa['maintenance']==1 else 'solid')
 plt.scatter(new_dfa['lat'][new_dfa['labels_kmeans']==1],new_dfa['lon'][new_dfa['labels_kmeans']==1],
-            color='red',s=20,linestyle='--')
+            color='red',s=20,linestyle='--' if new_dfa['maintenance']==1 else 'solid')
 plt.scatter(new_dfa['lat'][new_dfa['labels_kmeans']==2],new_dfa['lon'][new_dfa['labels_kmeans']==2],
-            color='green',s=20,linestyle='--')
+            color='green',s=20,linestyle='--' if new_dfa['maintenance']==1 else 'solid')
 
 plt.show()

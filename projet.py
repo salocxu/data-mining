@@ -33,15 +33,16 @@ def supprimer_sous_lim(data : pd.DataFrame, limite : float, liste_colonnes : lis
 
     return data
 
-
+'''
 def trouver_alt(lat, lon):
     
     return alt
+'''
 
 copier = 'oui'
 
 # On parcourt les lignes du CSV
-n= 1000000
+n= 50000
 # pas besoin de toujours le faire
     
 
@@ -66,12 +67,12 @@ if copier == 'oui':
             #regarder si deux oil temp
             sheet.cell(row=lignes + 2, column=colonnes + 1, value=data.iloc[lignes ,colonnes+1])
 
-    workbook.save('data_tab.xlsx')
+    workbook.save('data_tabmoins.xlsx')
     workbook.close()
 #travailler à partir du excel
 
  
-data = pd.read_excel('data_tab.xlsx')
+data = pd.read_excel('data_tabmoins.xlsx')
 # je souhaite que tu me fasses une moyenne des donnees sur les colonnes 3 à fin
 
 avg = data.iloc[:, 5:].mean(axis=0)
@@ -86,5 +87,5 @@ for index in range (len(avg)):
     sheet.column_dimensions[column_letter].width = 20
 
 
-workbook.save('data_avg.xlsx')
+workbook.save('data_avgmoins.xlsx')
 workbook.close()
